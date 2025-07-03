@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Status Item</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Add New Status Item</h1>
+
+        <form id="statusForm" class="space-y-5">
+            <!-- Date Received Field - Required -->
+            <div>
+                <label for="dateReceived" class="block text-sm font-medium text-gray-700 mb-1">Date Received</label>
+                <input type="date" id="dateReceived" name="dateReceived" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Customer Field - Required -->
+            <div>
+                <label for="customer" class="block text-sm font-medium text-gray-700 mb-1">Customer</label>
+                <input type="text" id="customer" name="customer" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Telegram Field - Required -->
+            <div>
+                <label for="telegram" class="block text-sm font-medium text-gray-700 mb-1">Telegram</label>
+                <input type="text" id="telegram" name="telegram" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Items Field - Required -->
+            <div>
+                <label for="items" class="block text-sm font-medium text-gray-700 mb-1">Items</label>
+                <textarea id="items" name="items" rows="3" required
+                          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"></textarea>
+            </div>
+
+            <!-- Total Field - Required -->
+            <div>
+                <label for="total" class="block text-sm font-medium text-gray-700 mb-1">Total</label>
+                <input type="number" id="total" name="total" step="0.01" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Date Complete Field - Optional -->
+            <div>
+                <label for="dateComplete" class="block text-sm font-medium text-gray-700 mb-1">Date Complete</label>
+                <input type="date" id="dateComplete" name="dateComplete"
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Date Paid Field - Optional -->
+            <div>
+                <label for="datePaid" class="block text-sm font-medium text-gray-700 mb-1">Date Paid</label>
+                <input type="date" id="datePaid" name="datePaid"
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Date Completion Notified Field - Optional -->
+            <div>
+                <label for="dateCompletionNotified" class="block text-sm font-medium text-gray-700 mb-1">Date Completion Notified</label>
+                <input type="date" id="dateCompletionNotified" name="dateCompletionNotified"
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+            </div>
+
+            <!-- Comments Field - Optional -->
+            <div>
+                <label for="comments" class="block text-sm font-medium text-gray-700 mb-1">Comments</label>
+                <textarea id="comments" name="comments" rows="3"
+                          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
+                Add Item
+            </button>
+        </form>
+
+        <!-- Message Box for Feedback -->
+        <div id="messageBox" class="mt-6 p-4 rounded-lg text-center hidden">
+            <p id="messageText" class="font-medium"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('statusForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+
+            // Collect form data. Ensure these keys match the parameters your Apps Script expects.
+            const formData = {
+                dateReceived: document.getElementById('dateReceived').value,
+                customer: document.getElementById('customer').value,
+                telegram: document.getElementById('telegram').value,
+                items: document.getElementById('items').value,
+                total: document.getElementById('total').value,
+                dateComplete: document.getElementById('dateComplete').value,
+                datePaid: document.getElementById('datePaid').value,
+                dateCompletionNotified: document.getElementById('dateCompletionNotified').value,
+                comments: document.getElementById('comments').value
+            };
+
+            // Display a loading message
+            messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
+            messageBox.classList.add('bg-blue-100', 'text-blue-800');
+            messageText.textContent = 'Submitting data...';
+
+            // IMPORTANT: Replace 'https://script.google.com/macros/s/AKfycbxLQrlq8dQUzgVpaLlGpvkI8IjzQBAQOL6dzNRuc4jkqGOOIFG_0xKK45XoWRlOLdP2Sw/exec' with the actual
+            // Web App URL you obtained after deploying your Google Apps Script.
+            const YOUR_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxLQrlq8dQUzgVpaLlGpvkI8IjzQBAQOL6dzNRuc4jkqGOOIFG_0xKK45XoWRlOLdP2Sw/exec';
+
+            try {
+                const response = await fetch(YOUR_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // 'no-cors' is often used for simple POSTs to Apps Script to avoid CORS issues.
+                                     // If you need to read the response from Apps Script (e.g., for error messages),
+                                     // you'll need to configure CORS headers in your Apps Script and remove 'no-cors'.
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Since 'no-cors' is used, we can't directly check `response.ok` or `response.json()`.
+                // We'll assume success for client-side feedback.
+                messageBox.classList.remove('bg-blue-100', 'text-blue-800');
+                messageBox.classList.add('bg-green-100', 'text-green-800');
+                messageText.textContent = 'Item added successfully!';
+
+                // Clear the form fields after successful submission
+                document.getElementById('statusForm').reset();
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                messageBox.classList.remove('bg-blue-100', 'text-blue-800');
+                messageBox.classList.add('bg-red-100', 'text-red-800');
+                messageText.textContent = 'Error adding item. Please try again.';
+            } finally {
+                messageBox.classList.remove('hidden');
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 5000); // Hide message after 5 seconds
+            }
+        });
+    </script>
+</body>
+</html>
