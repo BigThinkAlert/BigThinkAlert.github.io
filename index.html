@@ -128,7 +128,7 @@
 
             // Display a loading message
             messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
-            messageBox.classList.add('bg-blue-100', 'text-blue-800'); // Using blue for loading
+            messageBox.classList.add('bg-yellow-200', 'text-amber-900'); // Changed to yellow for loading message
             messageText.textContent = 'Submitting record...';
 
             // IMPORTANT: This URL has been replaced with your provided Google Apps Script Web App URL.
@@ -144,7 +144,7 @@
                     body: JSON.stringify(formData)
                 });
 
-                messageBox.classList.remove('bg-blue-100', 'text-blue-800');
+                messageBox.classList.remove('bg-yellow-200', 'text-amber-900'); // Remove loading colors
                 messageBox.classList.add('bg-green-600', 'text-white'); // Success message styling
                 messageText.textContent = 'Record added successfully!';
 
@@ -153,7 +153,7 @@
 
             } catch (error) {
                 console.error('Error submitting form:', error);
-                messageBox.classList.remove('bg-blue-100', 'text-blue-800');
+                messageBox.classList.remove('bg-yellow-200', 'text-amber-900'); // Remove loading colors
                 messageBox.classList.add('bg-red-600', 'text-white'); // Error message styling
                 messageText.textContent = 'Error adding record. Please try again.';
             } finally {
@@ -166,4 +166,5 @@
     </script>
 </body>
 </html>
+
 
