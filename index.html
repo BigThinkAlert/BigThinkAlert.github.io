@@ -3,82 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McCade Blacksmith Company Order Form</title></title>
+    <title>Add New Status Item</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter for a modern font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Special Elite for an old west feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
+            font-family: 'Special Elite', cursive; /* Old West style font */
+            background-color: #4a2c1a; /* Deep earthy brown background */
+        }
+        /* Custom styles for a more rustic feel */
+        .form-input-style {
+            background-color: #5a4030; /* Darker brown for input fields */
+            color: #f5deb3; /* Creamy text color */
+            border-color: #8b4513; /* Saddle brown border */
+            border-width: 2px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* Subtle inset shadow */
+        }
+        .form-input-style:focus {
+            outline: none;
+            border-color: #d2b48c; /* Tan/parchment color on focus */
+            box-shadow: 0 0 0 3px rgba(210, 180, 140, 0.5); /* Soft glow on focus */
+        }
+        .btn-old-west {
+            background-color: #8b0000; /* Dark red for button */
+            color: #f5deb3; /* Creamy text color */
+            border: 2px solid #5a0000; /* Darker red border */
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.4); /* Stronger, offset shadow */
+            transition: all 0.1s ease-in-out;
+        }
+        .btn-old-west:hover {
+            background-color: #a00000; /* Slightly lighter red on hover */
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.4); /* Reduce shadow on hover */
+            transform: translate(2px, 2px); /* Slight press effect */
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
-    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">McCade Blacksmith Company Order Form</h1>
+    <div class="bg-amber-900 p-8 rounded-lg shadow-2xl w-full max-w-md border-4 border-amber-800">
+        <h1 class="text-4xl font-extrabold text-center text-yellow-200 mb-2 tracking-wider uppercase">McCade Blacksmith Company</h1>
+        <h2 class="text-2xl font-bold text-center text-yellow-300 mb-8 tracking-wide">Order Form</h2>
 
-        <form id="statusForm" class="space-y-5">
+        <form id="statusForm" class="space-y-6">
             <!-- Date Received Field - Required -->
             <div>
-                <label for="dateReceived" class="block text-sm font-medium text-gray-700 mb-1">Date Received</label>
+                <label for="dateReceived" class="block text-lg font-medium text-yellow-100 mb-2">Date Received</label>
                 <input type="date" id="dateReceived" name="dateReceived" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                       class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg">
             </div>
 
             <!-- Customer Field - Required -->
             <div>
-                <label for="customer" class="block text-sm font-medium text-gray-700 mb-1">Customer</label>
+                <label for="customer" class="block text-lg font-medium text-yellow-100 mb-2">Customer</label>
                 <input type="text" id="customer" name="customer" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                       class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg">
             </div>
 
             <!-- Telegram Field - Required -->
             <div>
-                <label for="telegram" class="block text-sm font-medium text-gray-700 mb-1">Telegram</label>
+                <label for="telegram" class="block text-lg font-medium text-yellow-100 mb-2">Telegram</label>
                 <input type="text" id="telegram" name="telegram" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                       class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg">
             </div>
 
             <!-- Order Details Field - Required -->
             <div>
-                <label for="orderDetails" class="block text-sm font-medium text-gray-700 mb-1">Order Details</label>
-                <textarea id="orderDetails" name="orderDetails" rows="3" required
-                          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"></textarea>
+                <label for="orderDetails" class="block text-lg font-medium text-yellow-100 mb-2">Order Details</label>
+                <textarea id="orderDetails" name="orderDetails" rows="4" required
+                          class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg"></textarea>
             </div>
 
             <!-- Price Field - Required -->
             <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price</label>
+                <label for="price" class="block text-lg font-medium text-yellow-100 mb-2">Price</label>
                 <input type="number" id="price" name="price" step="0.01" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                       class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg">
             </div>
 
             <!-- Date Paid Field - Optional -->
             <div>
-                <label for="datePaid" class="block text-sm font-medium text-gray-700 mb-1">Date Paid</label>
+                <label for="datePaid" class="block text-lg font-medium text-yellow-100 mb-2">Date Paid</label>
                 <input type="date" id="datePaid" name="datePaid"
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out">
+                       class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg">
             </div>
 
             <!-- Comments Field - Optional -->
             <div>
-                <label for="comments" class="block text-sm font-medium text-gray-700 mb-1">Comments</label>
-                <textarea id="comments" name="comments" rows="3"
-                          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out"></textarea>
+                <label for="comments" class="block text-lg font-medium text-yellow-100 mb-2">Comments</label>
+                <textarea id="comments" name="comments" rows="4"
+                          class="mt-1 block w-full px-4 py-3 rounded-md form-input-style text-lg"></textarea>
             </div>
 
             <!-- Submit Button -->
             <button type="submit"
-                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
-                Add Item
+                    class="w-full flex justify-center py-3 px-6 btn-old-west rounded-md text-xl font-bold uppercase tracking-widest">
+                Submit Record
             </button>
         </form>
 
         <!-- Message Box for Feedback -->
-        <div id="messageBox" class="mt-6 p-4 rounded-lg text-center hidden">
-            <p id="messageText" class="font-medium"></p>
+        <div id="messageBox" class="mt-8 p-5 rounded-lg text-center bg-stone-700 text-yellow-100 hidden border-2 border-stone-600 shadow-md">
+            <p id="messageText" class="font-medium text-xl"></p>
         </div>
     </div>
 
@@ -102,8 +128,8 @@
 
             // Display a loading message
             messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
-            messageBox.classList.add('bg-blue-100', 'text-blue-800');
-            messageText.textContent = 'Submitting data...';
+            messageBox.classList.add('bg-blue-100', 'text-blue-800'); // Using blue for loading
+            messageText.textContent = 'Submitting record...';
 
             // IMPORTANT: This URL has been replaced with your provided Google Apps Script Web App URL.
             const YOUR_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwI5HEIxMQoATjaKs9ET3ZfnrMrkyWCxTpxQeTCMdez_g1BzFlrcxOqCOr3vujUEjUoWA/exec';
@@ -119,8 +145,8 @@
                 });
 
                 messageBox.classList.remove('bg-blue-100', 'text-blue-800');
-                messageBox.classList.add('bg-green-100', 'text-green-800');
-                messageText.textContent = 'Item added successfully!';
+                messageBox.classList.add('bg-green-600', 'text-white'); // Success message styling
+                messageText.textContent = 'Record added successfully!';
 
                 // Clear the form fields after successful submission
                 document.getElementById('statusForm').reset();
@@ -128,8 +154,8 @@
             } catch (error) {
                 console.error('Error submitting form:', error);
                 messageBox.classList.remove('bg-blue-100', 'text-blue-800');
-                messageBox.classList.add('bg-red-100', 'text-red-800');
-                messageText.textContent = 'Error adding item. Please try again.';
+                messageBox.classList.add('bg-red-600', 'text-white'); // Error message styling
+                messageText.textContent = 'Error adding record. Please try again.';
             } finally {
                 messageBox.classList.remove('hidden');
                 setTimeout(() => {
@@ -140,3 +166,4 @@
     </script>
 </body>
 </html>
+
